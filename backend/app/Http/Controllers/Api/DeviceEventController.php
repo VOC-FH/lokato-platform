@@ -8,6 +8,7 @@ use App\Models\Child;
 use App\Models\ChildLocation;
 use App\Models\Device;
 use App\Models\MovementLog;
+use App\Services\ChildMovementService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,25 @@ use Illuminate\Support\Facades\Log;
 
 class DeviceEventController extends Controller
 {
+    public function __construct(
+        protected ChildMovementService $childMovementService
+    ) {
+    }
+
+    public function scan(DeviceScanRequest $request): JsonResponse
+    {
+        $this->childMovementService->handleScanFromDevice(
+            deviceKey: $request->get('device_key'),
+            trackerUid: $request->get('tracker_uid'),
+            eventTimeIsoString: $request->get('event_time'), // can be null
+            source: 'scanner'
+        );
+
+        return response()->json([
+            'status' => 'ok',
+        ]);
+    }
+
     public function store(DeviceScanRequest $request): JsonResponse
     {
         $validated = $request->validated();

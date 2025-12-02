@@ -61,7 +61,7 @@ export const useAdminDataStore = defineStore("adminDataStore", {
     ------------------------- */
     async loadChildren() {
       try {
-        const res = await api.get("/admin/children");
+        const res = await api.get("/api/v1/admin/children");
         this.children = res.data;
       } catch (err) {
         this.setError("Fehler beim Laden der Admin-Kinder", err);
@@ -75,7 +75,7 @@ export const useAdminDataStore = defineStore("adminDataStore", {
     ------------------------- */
     async loadRooms() {
       try {
-        const res = await api.get("/admin/rooms");
+        const res = await api.get("/api/v1/admin/rooms");
         this.rooms = res.data;
       } catch (err) {
         this.setError("Fehler beim Laden der Admin-Räume", err);
@@ -87,7 +87,7 @@ export const useAdminDataStore = defineStore("adminDataStore", {
     ------------------------- */
     async loadDevices() {
       try {
-        const res = await api.get("/admin/devices");
+        const res = await api.get("/api/v1/admin/devices");
         this.devices = res.data;
       } catch (err) {
         this.setError("Fehler beim Laden der Admin-Geräte", err);
@@ -338,7 +338,7 @@ export const useAdminDataStore = defineStore("adminDataStore", {
       event_time?: string;
     }) {
       try {
-        const res = await api.post("/scan", payload);
+        const res = await api.post("api/v1/scan", payload);
         this.lastScanResult = res.data;
 
         // Nach Movement: Dashboard refresh (falls Feature vorhanden)

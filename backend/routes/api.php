@@ -18,7 +18,9 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
     // Event / Tür-Scan
-    Route::post('/scan', [DeviceEventController::class, 'store']);
+    # Route::post('/scan', [DeviceEventController::class, 'store']);
+    Route::post('/scan', [DeviceEventController::class, 'scan']);
+
 
     // Kinder (aktueller Standort)
     Route::get('/children', [ChildrenController::class, 'index']);

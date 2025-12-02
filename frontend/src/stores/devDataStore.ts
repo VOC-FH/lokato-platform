@@ -187,24 +187,24 @@ export const useDevDataStore = defineStore("devDataStore", {
         ] = await Promise.all([
 
           /* Public API */
-          api.get("/children"),
-          api.get("/rooms"),
-          api.get("/movement-log"),
+          api.get("/api/v1/children"),
+          api.get("/api/v1/rooms"),
+          api.get("/api/v1/movement-log"),
 
           /* Admin: Listen */
-          api.get("/admin/children"),
-          api.get("/admin/rooms"),
-          api.get("/admin/devices"),
+          api.get("/api/v1/admin/children"),
+          api.get("/api/v1/admin/rooms"),
+          api.get("/api/v1/admin/devices"),
 
           /* Public: Detail-API für Beispiel-ID=1 */
-          api.get("/children/1"),
-          api.get("/rooms/1/occupancy"),
-          api.get("/children/1/movement-log"),
+          api.get("/api/v1/children/1"),
+          api.get("/api/v1/rooms/1/occupancy"),
+          api.get("/api/v1/children/1/movement-log"),
 
           /* Admin: Detail-API Beispiel-ID=1 */
-          api.get("/admin/children/1"),
-          api.get("/admin/rooms/1"),
-          api.get("/admin/devices/1"),
+          api.get("/api/v1/admin/children/1"),
+          api.get("/api/v1/admin/rooms/1"),
+          api.get("/api/v1/admin/devices/1"),
         ]);
 
         /*

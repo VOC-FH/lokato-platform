@@ -109,7 +109,7 @@ export const useDashboardDataStore = defineStore("dashboardDataStore", {
         GET /rooms
         ----------------------------------------------------------------------
         */
-        const roomsRes = await api.get("/rooms");
+        const roomsRes = await api.get("/api/v1/rooms");
         this.rooms = roomsRes.data; // volle Liste der Räume
 
         /*
@@ -124,7 +124,7 @@ export const useDashboardDataStore = defineStore("dashboardDataStore", {
 
         for (const room of roomsRes.data) {
           try {
-            const occRes = await api.get(`/rooms/${room.id}/occupancy`);
+            const occRes = await api.get(`/api/v1/rooms/${room.id}/occupancy`);
 
             // speichern der aktuellen Raumbelegung unter seiner ID
             occMap[room.id] = occRes.data;
@@ -150,7 +150,7 @@ export const useDashboardDataStore = defineStore("dashboardDataStore", {
         Die API ist paginiert → wir nutzen nur data.slice(0,5)
         ----------------------------------------------------------------------
         */
-        const movRes = await api.get("/movement-log");
+        const movRes = await api.get("/api/v1/movement-log");
 
         /*
          * Hier extrahieren wir nur die Einträge (movRes.data.data).

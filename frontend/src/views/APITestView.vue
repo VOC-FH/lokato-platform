@@ -151,7 +151,7 @@ async function runTest(type: string) {
   --------------------------------------------------------- */
   if (type === "scan" || type === "all") {
     await safe("Scan Movement Event", () =>
-      api.post("/scan", {
+      api.post("api/v1/scan", {
         device_key: "RaspberryChild01", // dies muss existieren!
         tracker_uid: "TAG-0001",
         event_time: new Date().toISOString(),
@@ -163,9 +163,9 @@ async function runTest(type: string) {
      PUBLIC API
   --------------------------------------------------------- */
   if (type === "public" || type === "all") {
-    await safe("Public: Children", () => api.get("/children"));
-    await safe("Public: Rooms", () => api.get("/rooms"));
-    await safe("Public: Movement Log", () => api.get("/movement-log"));
+    await safe("Public: Children", () => api.get("/api/v1/children"));
+    await safe("Public: Rooms", () => api.get("/api/v1/rooms"));
+    await safe("Public: Movement Log", () => api.get("/api/v1/movement-log"));
   }
 }
 </script>

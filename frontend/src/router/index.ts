@@ -12,6 +12,7 @@ import { createRouter, createWebHistory } from "vue-router";
 | Jede dieser Komponenten muss in src/views/ als .vue-Datei existieren.
 */
 import DashboardView from "../views/DashboardView.vue";
+import NEWDashboard from "../views/NEWDashboard.vue";
 import DevView from "../views/DevView.vue";
 import AdminView from "../views/AdminView.vue";
 
@@ -78,6 +79,12 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: DashboardView,
+  },
+
+  {
+    path: "/newdashboard",
+    name: "NEWDashboard",
+    component: NEWDashboard,
   },
 
   /* ------------------------------------------------------------------

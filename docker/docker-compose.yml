@@ -34,5 +34,29 @@ services:
     depends_on:
       - db
 
+  redis:
+    image: redis:7-alpine
+    container_name: lokato-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./redis/data:/data
+
+  # --- MQTT-Broker (Mosquitto) ---
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: lokato-mqtt
+    restart: unless-stopped
+    ports:
+      - "1883:1883"      # klassisches MQTT
+      # - "9001:9001"    # optional: MQTT über WebSockets
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+
 volumes:
   lokato_db_data:
